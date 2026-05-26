@@ -52,7 +52,7 @@ body{background:#0a0a1a;font-family:'Amiri',serif;overflow-x:hidden;min-height:1
 .music-btn:hover{transform:scale(1.05);}
 .music-label{color:rgba(245,200,66,.7);font-size:13px;font-family:'Dancing Script',cursive;}
 /* S6 */
-#s6{background:radial-gradient(ellipse at 50% 40%,#1a0820 0%,#0a0a1a 70%);}
+#s5{background:radial-gradient(ellipse at 50% 40%,#1a0820 0%,#0a0a1a 70%);}
 .end-title{font-family:'Playfair Display',serif;font-size:clamp(26px,8vw,48px);font-weight:700;background:linear-gradient(135deg,#f5c842,#ff9a3c,#f5c842);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-align:center;margin-bottom:14px;}
 .end-sub{color:rgba(255,255,255,.6);font-size:17px;text-align:center;line-height:2;margin-bottom:18px;}
 .end-emoji{font-size:40px;letter-spacing:12px;text-align:center;animation:pulse 2s ease-in-out infinite;}
@@ -85,7 +85,7 @@ body{background:#0a0a1a;font-family:'Amiri',serif;overflow-x:hidden;min-height:1
 
 <!-- S1 Welcome -->
 <div class="screen" id="s1">
-  <div class="dots"><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+  <div class="dots"><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
   <div class="moon"></div>
   <div class="arabic">عيد مبارك</div>
   <div class="big-title">Eid Mubarak</div>
@@ -95,7 +95,7 @@ body{background:#0a0a1a;font-family:'Amiri',serif;overflow-x:hidden;min-height:1
 
 <!-- S2 Dua -->
 <div class="screen hidden" id="s2">
-  <div class="dots"><div class="dot"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+  <div class="dots"><div class="dot"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div></div>
   <div class="dua-label">✦ Special Dua ✦</div>
   <div class="dua-box">
     <div class="dua-title">🤲 Aapke Liye Dua</div>
@@ -118,7 +118,7 @@ body{background:#0a0a1a;font-family:'Amiri',serif;overflow-x:hidden;min-height:1
 
 <!-- S3 Pic 1 -->
 <div class="screen hidden pic-screen" id="s3">
-  <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div></div>
+  <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot active"></div><div class="dot"></div></div>
   <div class="pic-top">✨ Photo 1 of 2 ✨</div>
   <div class="pic-frame">
     <img src="https://i.ibb.co/rf1t03N9/IMG-20260517-002855-160.png" alt="Photo 1">
@@ -133,7 +133,7 @@ body{background:#0a0a1a;font-family:'Amiri',serif;overflow-x:hidden;min-height:1
 
 <!-- S4 Pic 2 -->
 <div class="screen hidden pic-screen" id="s4">
-  <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot active"></div><div class="dot"></div></div>
+  <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot active"></div></div>
   <div class="pic-top">✨ Photo 2 of 2 ✨</div>
   <div class="pic-frame">
     <img src="https://i.ibb.co/S4KP1LqR/IMG-20260505-094104-848.jpg" alt="Photo 2">
@@ -148,7 +148,7 @@ body{background:#0a0a1a;font-family:'Amiri',serif;overflow-x:hidden;min-height:1
 
 <!-- S5 Final Message -->
 <div class="screen hidden" id="s5">
-  <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot active"></div></div>
+  <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
   <div class="end-title">Eid Mubarak! 🌙</div>
   <div class="end-sub">
     May this Eid bring you joy,<br>
@@ -189,15 +189,6 @@ function goTo(screenNum) {
   const targetScreen = document.getElementById('s' + screenNum);
   if (targetScreen) {
     targetScreen.classList.remove('hidden');
-    
-    // Update dots
-    const allDots = document.querySelectorAll('.dot');
-    allDots.forEach(dot => dot.classList.remove('active'));
-    
-    const targetDots = targetScreen.querySelectorAll('.dot');
-    if (targetDots[screenNum - 1]) {
-      targetDots[screenNum - 1].classList.add('active');
-    }
   }
 }
 
