@@ -39,12 +39,11 @@ body{background:#0a0a1a;font-family:'Amiri',serif;overflow-x:hidden;min-height:1
 /* PIC SCREENS */
 .pic-screen{background:#0a0a1a;}
 .pic-top{font-family:'Dancing Script',cursive;font-size:14px;color:rgba(255,255,255,.4);letter-spacing:3px;text-transform:uppercase;margin-bottom:10px;}
-.pic-frame{position:relative;border-radius:18px;overflow:hidden;border:2px solid rgba(245,200,66,.3);box-shadow:0 0 40px rgba(245,200,66,.12);max-width:320px;width:88vw;}
+.pic-frame{position:relative;border-radius:18px;overflow:hidden;border:2px solid rgba(245,200,66,.3);box-shadow:0 0 40px rgba(245,200,66,.12);max-width:320px;width:88vw;min-height:400px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(245,200,66,.1),rgba(100,220,100,.1));}
 .pic-frame img{width:100%;display:block;max-height:52vh;object-fit:cover;}
+.emoji-pic{font-size:120px;animation:bounce 2s ease-in-out infinite;}
+@keyframes bounce{0%,100%{transform:translateY(0);}50%{transform:translateY(-20px);}}
 .pic-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0) 35%,rgba(0,0,0,.65) 100%);}
-.pic-doodle{position:absolute;top:10px;left:0;right:0;display:flex;justify-content:center;gap:8px;flex-wrap:wrap;padding:0 10px;}
-.tag{background:rgba(255,255,255,.15);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.3);border-radius:30px;padding:4px 12px;font-family:'Dancing Script',cursive;font-size:15px;color:#fff;}
-.tag.gold{background:rgba(245,200,66,.2);border-color:rgba(245,200,66,.5);color:#f5c842;}
 .pic-caption{position:absolute;bottom:12px;left:0;right:0;text-align:center;font-family:'Playfair Display',serif;font-size:clamp(18px,5vw,26px);color:#f5c842;font-style:italic;text-shadow:0 2px 10px rgba(0,0,0,.8);}
 .pic-nav{display:flex;gap:12px;margin-top:18px;justify-content:center;align-items:center;flex-wrap:wrap;}
 .pic-btn{background:linear-gradient(135deg,#f5c842,#ff9a3c);border:none;padding:12px 26px;border-radius:50px;font-family:'Dancing Script',cursive;font-size:19px;color:#1a0a2e;cursor:pointer;box-shadow:0 0 20px rgba(245,200,66,.3);transition:transform .2s;}
@@ -53,7 +52,8 @@ body{background:#0a0a1a;font-family:'Amiri',serif;overflow-x:hidden;min-height:1
 #s6{background:radial-gradient(ellipse at 50% 40%,#1a0820 0%,#0a0a1a 70%);}
 .end-title{font-family:'Playfair Display',serif;font-size:clamp(26px,8vw,48px);font-weight:700;background:linear-gradient(135deg,#f5c842,#ff9a3c,#f5c842);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-align:center;margin-bottom:14px;}
 .end-sub{color:rgba(255,255,255,.6);font-size:17px;text-align:center;line-height:2;margin-bottom:18px;}
-.end-emoji{font-size:30px;letter-spacing:10px;text-align:center;}
+.end-emoji{font-size:40px;letter-spacing:12px;text-align:center;animation:pulse 2s ease-in-out infinite;}
+@keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.1);}}
 .restart-btn{margin-top:22px;background:rgba(255,255,255,.06);border:1px solid rgba(245,200,66,.2);padding:11px 28px;border-radius:50px;font-size:14px;color:rgba(245,200,66,.6);cursor:pointer;font-family:'Amiri',serif;transition:all .2s;}
 .restart-btn:hover{background:rgba(245,200,66,.1);color:#f5c842;}
 /* Dots */
@@ -108,9 +108,9 @@ body{background:#0a0a1a;font-family:'Amiri',serif;overflow-x:hidden;min-height:1
   <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
   <div class="pic-top">✨ Photo 1 of 3 ✨</div>
   <div class="pic-frame">
-    <img src="https://images.pexels.com/photos/14776705/pexels-photo-14776705.jpeg?w=400&h=500&fit=crop" alt="Eid Pic 1">
+    <div class="emoji-pic">👨‍👩‍👧‍👦</div>
     <div class="pic-overlay"></div>
-    <div class="pic-caption">Beautiful Moments 💕</div>
+    <div class="pic-caption">Family & Love 💕</div>
   </div>
   <div class="pic-nav">
     <button class="pic-btn" onclick="goTo(4)">Next →</button>
@@ -123,7 +123,7 @@ body{background:#0a0a1a;font-family:'Amiri',serif;overflow-x:hidden;min-height:1
   <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div></div>
   <div class="pic-top">✨ Photo 2 of 3 ✨</div>
   <div class="pic-frame">
-    <img src="https://images.pexels.com/photos/3622666/pexels-photo-3622666.jpeg?w=400&h=500&fit=crop" alt="Eid Pic 2">
+    <div class="emoji-pic">🎉🎊</div>
     <div class="pic-overlay"></div>
     <div class="pic-caption">Joyful Times ✨</div>
   </div>
@@ -138,7 +138,7 @@ body{background:#0a0a1a;font-family:'Amiri',serif;overflow-x:hidden;min-height:1
   <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot active"></div><div class="dot"></div></div>
   <div class="pic-top">✨ Photo 3 of 3 ✨</div>
   <div class="pic-frame">
-    <img src="https://images.pexels.com/photos/3946622/pexels-photo-3946622.jpeg?w=400&h=500&fit=crop" alt="Eid Pic 3">
+    <div class="emoji-pic">🌙💚</div>
     <div class="pic-overlay"></div>
     <div class="pic-caption">Blessed & Grateful 🤍</div>
   </div>
