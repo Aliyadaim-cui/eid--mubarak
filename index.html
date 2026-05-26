@@ -40,12 +40,17 @@ body{background:#0a0a1a;font-family:'Amiri',serif;overflow-x:hidden;min-height:1
 .pic-screen{background:#0a0a1a;}
 .pic-top{font-family:'Dancing Script',cursive;font-size:14px;color:rgba(255,255,255,.4);letter-spacing:3px;text-transform:uppercase;margin-bottom:10px;}
 .pic-frame{position:relative;border-radius:18px;overflow:hidden;border:2px solid rgba(245,200,66,.3);box-shadow:0 0 40px rgba(245,200,66,.12);max-width:320px;width:88vw;max-height:500px;}
-.pic-frame img{width:100%;display:block;height:100%;object-fit:cover;}
+.pic-frame img{width:100%;display:block;height:100%;object-fit:cover;border:none;}
 .pic-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0) 35%,rgba(0,0,0,.65) 100%);}
 .pic-caption{position:absolute;bottom:12px;left:0;right:0;text-align:center;font-family:'Playfair Display',serif;font-size:clamp(18px,5vw,26px);color:#f5c842;font-style:italic;text-shadow:0 2px 10px rgba(0,0,0,.8);}
 .pic-nav{display:flex;gap:12px;margin-top:18px;justify-content:center;align-items:center;flex-wrap:wrap;}
 .pic-btn{background:linear-gradient(135deg,#f5c842,#ff9a3c);border:none;padding:12px 26px;border-radius:50px;font-family:'Dancing Script',cursive;font-size:19px;color:#1a0a2e;cursor:pointer;box-shadow:0 0 20px rgba(245,200,66,.3);transition:transform .2s;}
 .pic-btn:hover{transform:scale(1.06);}
+/* Music Controls */
+.music-control{position:fixed;bottom:20px;right:20px;z-index:100;background:rgba(245,200,66,.15);border:1px solid rgba(245,200,66,.5);border-radius:50px;padding:12px 20px;display:flex;gap:10px;align-items:center;}
+.music-btn{background:linear-gradient(135deg,#f5c842,#ff9a3c);border:none;padding:8px 16px;border-radius:50px;color:#1a0a2e;font-weight:700;cursor:pointer;font-size:14px;transition:transform .2s;}
+.music-btn:hover{transform:scale(1.05);}
+.music-label{color:rgba(245,200,66,.7);font-size:13px;font-family:'Dancing Script',cursive;}
 /* S6 */
 #s6{background:radial-gradient(ellipse at 50% 40%,#1a0820 0%,#0a0a1a 70%);}
 .end-title{font-family:'Playfair Display',serif;font-size:clamp(26px,8vw,48px);font-weight:700;background:linear-gradient(135deg,#f5c842,#ff9a3c,#f5c842);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-align:center;margin-bottom:14px;}
@@ -68,9 +73,19 @@ body{background:#0a0a1a;font-family:'Amiri',serif;overflow-x:hidden;min-height:1
 <div class="stars" id="stars"></div>
 <div class="petals" id="petals"></div>
 
+<!-- Music Player -->
+<audio id="bgMusic" loop>
+  <source src="https://assets.mixkit.co/active_storage/sfx/2761/2761-preview.mp3" type="audio/mpeg">
+</audio>
+
+<div class="music-control">
+  <span class="music-label">🎵 Music</span>
+  <button class="music-btn" onclick="toggleMusic()">Play</button>
+</div>
+
 <!-- S1 Welcome -->
 <div class="screen" id="s1">
-  <div class="dots"><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+  <div class="dots"><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
   <div class="moon"></div>
   <div class="arabic">عيد مبارك</div>
   <div class="big-title">Eid Mubarak</div>
@@ -80,7 +95,7 @@ body{background:#0a0a1a;font-family:'Amiri',serif;overflow-x:hidden;min-height:1
 
 <!-- S2 Dua -->
 <div class="screen hidden" id="s2">
-  <div class="dots"><div class="dot"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+  <div class="dots"><div class="dot"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
   <div class="dua-label">✦ Special Dua ✦</div>
   <div class="dua-box">
     <div class="dua-title">🤲 Aapke Liye Dua</div>
@@ -103,10 +118,10 @@ body{background:#0a0a1a;font-family:'Amiri',serif;overflow-x:hidden;min-height:1
 
 <!-- S3 Pic 1 -->
 <div class="screen hidden pic-screen" id="s3">
-  <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+  <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div></div>
   <div class="pic-top">✨ Photo 1 of 2 ✨</div>
   <div class="pic-frame">
-   <a href="https://ibb.co/67qN8VzK"><img src="https://i.ibb.co/G4rF9ByZ/IMG-20260517-002855-160.png" alt="IMG-20260517-002855-160" border="0"></a><br /><a target='_blank' href='https://imgbb.com/'>high resolution image host</a><br />
+    <img src="https://i.ibb.co/rf1t03N9/IMG-20260517-002855-160.png" alt="Photo 1">
     <div class="pic-overlay"></div>
     <div class="pic-caption">sweetie piee 💕</div>
   </div>
@@ -115,26 +130,13 @@ body{background:#0a0a1a;font-family:'Amiri',serif;overflow-x:hidden;min-height:1
     <button class="back-btn" onclick="goTo(2)">← Back</button>
   </div>
 </div>
-  <!-- S4 Pic 3 -->
+
+<!-- S4 Pic 2 -->
 <div class="screen hidden pic-screen" id="s4">
-  <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div></div>
-  <div class="pic-top">✨ Photo 2 of 3 ✨</div>
+  <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot active"></div><div class="dot"></div></div>
+  <div class="pic-top">✨ Photo 2 of 2 ✨</div>
   <div class="pic-frame">
-<a href="https://ibb.co/1fPsS0hq"><img src="https://i.ibb.co/4ZXsQF9T/Screenshot-20260421-090042.jpg" alt="Screenshot-20260421-090042" border="0"></a>
-    <div class="pic-overlay"></div>
-    <div class="pic-caption">mr annoying💕</div>
-      </div>
-  <div class="pic-nav">
-    <button class="pic-btn" onclick="goTo(4)">Next →</button>
-    <button class="back-btn" onclick="goTo(2)">← Back</button>
-  </div>
-</div>
-<!-- S5 Pic 3 -->
-<div class="screen hidden pic-screen" id="s5">
-  <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div></div>
-  <div class="pic-top">✨ Photo 3 of 3 ✨</div>
-  <div class="pic-frame">
-   <a href="https://ibb.co/8LRvJLBZ"><img src="https://i.ibb.co/mVYZmVBW/IMG-20260505-094104-848.jpg" alt="IMG-20260505-094104-848" border="0"></a>
+    <img src="https://i.ibb.co/S4KP1LqR/IMG-20260505-094104-848.jpg" alt="Photo 2">
     <div class="pic-overlay"></div>
     <div class="pic-caption">badieee ✨</div>
   </div>
@@ -146,7 +148,7 @@ body{background:#0a0a1a;font-family:'Amiri',serif;overflow-x:hidden;min-height:1
 
 <!-- S5 Final Message -->
 <div class="screen hidden" id="s5">
-  <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot active"></div><div class="dot"></div></div>
+  <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot active"></div></div>
   <div class="end-title">Eid Mubarak! 🌙</div>
   <div class="end-sub">
     May this Eid bring you joy,<br>
@@ -159,6 +161,22 @@ body{background:#0a0a1a;font-family:'Amiri',serif;overflow-x:hidden;min-height:1
 </div>
 
 <script>
+// Music control function
+function toggleMusic() {
+  const audio = document.getElementById('bgMusic');
+  const btn = event.target;
+  
+  if (audio.paused) {
+    audio.play();
+    btn.textContent = 'Pause';
+    btn.style.background = 'linear-gradient(135deg,#ff6b6b,#ff8787)';
+  } else {
+    audio.pause();
+    btn.textContent = 'Play';
+    btn.style.background = 'linear-gradient(135deg,#f5c842,#ff9a3c)';
+  }
+}
+
 // Function to navigate between screens
 function goTo(screenNum) {
   // Hide all screens
